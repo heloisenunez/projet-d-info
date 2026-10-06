@@ -1,4 +1,0 @@
-bonjour
-salut
-end
-Informatique

@@ -7,7 +7,19 @@
 /* Style général de la page */
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
     line-height: 1.6;
-    background-color: #ffe0e0;
+    background-color: #fff1f1;
     color: #725db8;
+}
+
+button {
+    font-style: italic;
+    text-align: center;
+}
+
+button:hover {
+    font-weight: bold;
+    background-color: aliceblue;
+    color: rgb(10, 56, 56);
 }
