@@ -6,20 +6,11 @@
 
 /* Style général de la page */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    line-height: 1.6;
-    background-color: #fff1f1;
-    color: #725db8;
+    background-color: #ffffff;
 }
 
-button {
-    font-style: italic;
+h1{
+    color: #58d3db;
+    font-family: sans-serif;
     text-align: center;
-}
-
-button:hover {
-    font-weight: bold;
-    background-color: aliceblue;
-    color: rgb(10, 56, 56);
 }
