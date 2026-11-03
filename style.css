@@ -9,8 +9,53 @@ body {
     background-color: #ffffff;
 }
 
-h1{
-    color: #58d3db;
-    font-family: sans-serif;
+.calendar {
+    --accent: #2563eb;
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: system-ui, sans-serif;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+.calendar-header button {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.calendar-header button:hover { background: #f1f5f9; }
+.month-year {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
     text-align: center;
 }
+.day-name {
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+}
+.day {
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+.day:hover { background: #f1f5f9; }
+.today {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+.today:hover { background: var(--accent); }

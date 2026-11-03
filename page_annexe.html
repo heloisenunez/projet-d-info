@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic HTML Calendar</title>
+<style>
+  .calendar {
+    --accent: #2563eb;
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: system-ui, sans-serif;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+  }
+  .calendar-header button {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .calendar-header button:hover { background: #f1f5f9; }
+  .month-year {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+  }
+  .day-name {
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+  }
+  .day {
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+  .day:hover { background: #f1f5f9; }
+  .today {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+  .today:hover { background: var(--accent); }
+</style>
+</head>
+<body>
 
+<div class="calendar">
+  <div class="calendar-header">
+    <button id="prev">&larr; Prev</button>
+    <span class="month-year" id="monthYear"></span>
+    <button id="next">Next &rarr;</button>
+  </div>
+  <div class="calendar-grid" id="grid">
+    <span class="day-name">Mon</span>
+    <span class="day-name">Tue</span>
+    <span class="day-name">Wed</span>
+    <span class="day-name">Thu</span>
+    <span class="day-name">Fri</span>
+    <span class="day-name">Sat</span>
+    <span class="day-name">Sun</span>
+  </div>
+</div>
+
+<script>
+  const grid = document.getElementById("grid");
+  const monthYear = document.getElementById("monthYear");
+  const now = new Date();
+  let currentMonth = now.getMonth();   // 0-based: 0 = January
+  let currentYear = now.getFullYear();
+
+  const monthNames = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  function renderCalendar() {
+    // Clear previous day cells, keep the 7 day-name headers
+    grid.querySelectorAll(".day").forEach(d => d.remove());
+
+    monthYear.textContent = monthNames[currentMonth] + " " + currentYear;
+
+    // Day of week for the 1st (0=Sun). Convert to Mon-start: Mon=0 … Sun=6
+    let firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    firstDay = (firstDay + 6) % 7;
+
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+
+    // Blank cells before the first day
+    for (let i = 0; i < firstDay; i++) {
+      const blank = document.createElement("span");
+      blank.className = "day";
+      grid.appendChild(blank);
+    }
+
+    // Day cells
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement("span");
+      cell.className = "day";
+      cell.textContent = d;
+
+      if (
+        d === today.getDate() &&
+        currentMonth === today.getMonth() &&
+        currentYear === today.getFullYear()
+      ) {
+        cell.classList.add("today");
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  document.getElementById("prev").addEventListener("click", () => {
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    renderCalendar();
+  });
+
+  renderCalendar();
+</script>
+
+</body>
+</html>
