@@ -5,8 +5,8 @@
   let currentYear = now.getFullYear();
 
   const monthNames = [
-    "Janvier","Février","Mars","Avril","Mai","Juin",
-    "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
   ];
 
   function renderCalendar() {
@@ -46,13 +46,13 @@
     }
   }
 
-  document.getElementById("Précédent").addEventListener("click", () => {
+  document.getElementById("prev").addEventListener("click", () => {
     currentMonth--;
     if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendar();
   });
 
-  document.getElementById("Suivant").addEventListener("click", () => {
+  document.getElementById("next").addEventListener("click", () => {
     currentMonth++;
     if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendar();
