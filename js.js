@@ -41,7 +41,7 @@ function renderCalendar() {
 
   for (let i = 0; i < firstDay; i++) {
     const blank = document.createElement("span");
-    blank.className = "day";
+    blank.className = "day blank";
     grid.appendChild(blank);
   }
 

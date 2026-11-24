@@ -124,3 +124,5 @@ body {
   border-radius: 6px;
   cursor: pointer;
 }
+
+.day.blank { cursor: default; pointer-events: none; }
