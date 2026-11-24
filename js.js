@@ -159,4 +159,6 @@ document.getElementById("next").addEventListener("click", () => {
   renderCalendar();
 });
 
+jourSelectionne = cleDate(now.getFullYear(), now.getMonth(), now.getDate());
 renderCalendar();
+afficherPanneau();
